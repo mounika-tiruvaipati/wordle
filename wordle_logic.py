@@ -1,18 +1,26 @@
-def matching_words(word, guess):
+def matching_letter(word, guess):
     example = []
+    misc = []
+
+    word = word.lower()
+    guess = guess.lower()
+
     for g, w in zip(guess, word):
         if g == w:
             example.append(g)
+        else:  
+            misc.append(g)
+    return example, misc
 
-    return example
+def matching_letter_wrong_placement(word, guess):
+    _, misc = matching_letter(word, guess)
+    word = word.lower() 
+    wrong_placement = []
+    for i in misc:
+        if i in word:
+            wrong_placement.append(i)
+    return wrong_placement
 
-word = "Happy"
-guess = input("Please enter your guess: ")
 
-while guess != word:
-    result = matching_words(word, guess)
-    print("Matching letters:", result)
-    
-    guess = input("Please enter your next guess: ")
 
-print("Congratulations! You've guessed the word.")
+
