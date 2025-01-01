@@ -1,6 +1,7 @@
 import random
 from five_letter_word import WORDS
 from wordle_logic import matching_letter, matching_letter_wrong_placement 
+from color import color
 
 word = random.choice(WORDS)
 
@@ -23,14 +24,19 @@ while attempts <= 6:
         continue
 
     example, misc = matching_letter(word, guess)
-    wrong_placement, already_guessed_letters = matching_letter_wrong_placement(word, guess, already_guessed_letters)  
+    wrong_placement, already_guessed_letters = matching_letter_wrong_placement(word, guess, already_guessed_letters) 
+    colored = color(guess, wrong_placement, example, word) 
 
     print("Matching letters with correct placement:", example)
     print("Correct letters but wrong placement:", wrong_placement)
     print("Already guessed letters:", already_guessed_letters)
+    print("Your guess with colors:", colored)
     print("Attempt #:", attempts)
     
     attempts += 1
 
     if attempts == 6:
         print("Sorry, you've reached the maximum number of attempts. The correct answer is:", word)
+        break
+
+

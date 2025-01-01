@@ -18,7 +18,7 @@ def matching_letter_wrong_placement(word, guess, already_guessed_letters):
     wrong_placement = []
     
     for i in misc:
-        if i in word:
+        if i in word and guess.index(i) != word.index(i):
             wrong_placement.append(i)
         else:
             if i not in already_guessed_letters:
